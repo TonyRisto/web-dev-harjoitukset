@@ -1,0 +1,47 @@
+body {
+    background-image: linear-gradient(to right, lawngreen, rgb(219, 23, 105))
+}
+
+h1 {
+    font-family: 'Comic Neue', sans-serif;
+    color: black;
+    opacity: 100%;
+}
+
+h2 {
+    font-family: 'Yarndings 12', system-ui;
+    font-style: normal;
+    letter-spacing: -4px;
+}
+
+p {
+    font-family: 'Inter', sans-serif;
+    letter-spacing: -4px;
+    color: black;
+    opacity: 80%;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:link {
+    color: tomato;
+}
+
+a:visited {
+    color: darkblue;
+}
+
+a:hover {
+    font-size: 72px;
+}
+
+body:hover {
+    background-image: linear-gradient(to right, darkblue, darkred);
+}
+
+img:hover {
+    width: 1280px;
+    height: auto;
+}

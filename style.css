@@ -23,6 +23,11 @@ img {
     width: 250px;
 }
 
+#main {
+    width: auto;
+    height: 500px;
+}
+
 nav {
     padding: 0px 50px 0px 0px;
 }
@@ -44,4 +49,5 @@ li {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
