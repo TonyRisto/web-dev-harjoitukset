@@ -4,6 +4,11 @@ h1 {
     font-family: 'Inter', sans-serif;
 }
 
+h2 {
+    font-size: 24px;
+    font-family: 'Inter', sans-serif;
+}
+
 header {
     height: 80px;
     display: flex;
@@ -33,6 +38,13 @@ body {
     background-color: white;
 }
 
+.product-image {
+    width: 100%;
+    object-fit: contain;
+    height: 300px;
+    background-color: white;
+}
+
 #main {
     width: auto;
     max-height: 600px;
@@ -47,6 +59,14 @@ ul {
     flex-direction: row;
     list-style: none;
     gap: 100px;
+}
+
+a {
+    text-decoration: none;
+    font-size: 18px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    color: #277524;
 }
 
 li {
@@ -66,7 +86,18 @@ li {
     overflow: hidden;
 }
 
-p {
+.products {
+    padding: 0px 40px 0px 40px;
+    background-color: rgb(224, 222, 222);
+    height: 1400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    overflow: hidden;
+}
+
+.home-text {
     padding-left: 130px;
     padding-right: 130px;
 }
@@ -80,4 +111,79 @@ p {
     font-family: 'Inter', sans-serif;
     font-size: 18px;
     text-align: center;
+}
+
+.product-text {
+    width: 100%;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.product-cards {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.card {
+    display: flex;
+    padding: 24px;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    background-color: white;
+    border-radius: 24px;
+}
+
+.product-images {
+    width: 100%;
+    height: 100%;
+    max-width: 500px;
+    background-color: white;
+    object-fit: cover;
+}
+
+#italy {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-style: italic;
+    color: black, 90%;
+}
+
+#product-info {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+}
+
+.contact-page {
+    background-color: rgb(224, 222, 222);
+    padding: 0px 40px 0px 40px;
+    height: 800px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    overflow: hidden;
+}
+
+#contact-us-card {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: start;
+    justify-content: space-between;
+}
+
+#contact-us {
+    font-family: 'Inter', sans-serif;
+    font-size: 42px;
+}
+
+#contact-info {
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
 }
