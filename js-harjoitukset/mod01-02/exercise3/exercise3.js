@@ -1,9 +1,3 @@
-"use strict";
-console.log("I'm printing to console!");
-
-const name = prompt("Mikä on nimesi?");
-document.querySelector("#greeting").innerHTML = "Hei, " + name;
-
 const n1 = parseInt(prompt("Anna 1. luku"));
 const n2 = parseInt(prompt("Anna 2. luku"));
 const n3 = parseInt(prompt("Anna 3. luku"));
