@@ -201,3 +201,8 @@ li {
     height: auto;
     object-fit: contain;
 }
+
+img {
+    max-width: 800px;
+    height: auto;
+}
