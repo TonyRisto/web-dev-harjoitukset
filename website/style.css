@@ -199,4 +199,5 @@ li {
     align-items: center;
     max-width: 800px;
     height: auto;
+    object-fit: contain;
 }
