@@ -197,12 +197,11 @@ li {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    max-width: 800px;
     height: auto;
     object-fit: contain;
 }
 
 img {
-    max-width: 800px;
+    max-width: 1000px;
     height: auto;
 }
