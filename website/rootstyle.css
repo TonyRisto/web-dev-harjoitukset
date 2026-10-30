@@ -1,0 +1,19 @@
+.explorer {
+    background: #1e1e1e;
+    color: #cccccc;
+    width: 220px;
+    padding: 15px;
+    font-family: Arial, sans-serif;
+}
+
+.explorer a {
+    display: block;
+    color: #cccccc;
+    text-decoration: none;
+    padding: 6px 15px;
+    font-size: 13px;
+}
+
+.explorer a:hover {
+    background: #37373d;
+}
