@@ -193,6 +193,10 @@ li {
 }
 
 .ss {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     max-width: 800px;
     height: auto;
 }
