@@ -154,7 +154,7 @@ li {
     color: black, 90%;
 }
 
-#product-info {
+.product-info {
     font-family: 'Inter', sans-serif;
     font-size: 16px;
 }
@@ -190,4 +190,9 @@ li {
 
 .contacts {
     color: #063B2E
+}
+
+img {
+    width: 800px;
+    height: auto;
 }
