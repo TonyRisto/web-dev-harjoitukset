@@ -28,3 +28,4 @@ Tehdyt tehtävät:
 - Tehtävä 7: 2p
 - Tehtävä 8: 2p
 - Tehtävä 9: 3p
+- Tehtävä 10: 8p
