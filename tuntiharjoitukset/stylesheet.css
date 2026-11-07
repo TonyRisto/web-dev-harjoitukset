@@ -1,0 +1,48 @@
+h1 {
+    display: flex;
+    font-size: 26px;
+    justify-content: center;
+}
+
+h2 {
+    font-size: 18px;
+    color: blue;
+}
+
+ol {
+    border: 1px dashed black;
+    padding: 10px;
+}
+
+div {
+    height: 200px;
+}
+
+ul {
+    border: 1px dashed black;
+    padding: 10px;
+}
+
+li:hover {
+    background-color: blue;
+}
+
+#first:hover {
+    background-color: aqua;
+}
+
+#second:hover {
+    background-color: aquamarine;
+}
+
+#third:hover {
+    background-color: blue;
+}
+
+#fourth:hover {
+    background-color: blueviolet;
+}
+
+#fifth:hover {
+    background-color: brown;
+}

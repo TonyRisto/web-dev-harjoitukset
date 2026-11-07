@@ -1,0 +1,217 @@
+
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website - Tiedostot</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #f5f5f5;
+            color: #222;
+        }
+
+        h1 {
+            margin-bottom: 25px;
+        }
+
+        .folder {
+            margin: 6px 0;
+        }
+
+        summary {
+            cursor: pointer;
+            padding: 9px;
+            border-radius: 6px;
+            background: #e5e5e5;
+            list-style: none;
+        }
+
+        summary:hover {
+            background: #d5d5d5;
+        }
+
+        .contents {
+            margin-left: 22px;
+            padding-left: 12px;
+            border-left: 1px solid #ccc;
+        }
+
+        .file {
+            display: block;
+            padding: 7px;
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        .file:hover {
+            text-decoration: underline;
+        }
+
+        #status {
+            color: #666;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>📁 Website</h1>
+
+<p id="status">Ladataan GitHubista...</p>
+
+<div id="fileTree"></div>
+
+<script>
+
+// GITHUB-ASETUKSET
+const OWNER = "TonyRisto";
+const REPO = "OMA_REPOSITORIO";
+const BRANCH = "web-dev-harjoitukset";
+
+// Haettavat pääkansiot
+const ROOT_FOLDERS = [
+    "website",
+    "js-harjoitukset",
+    "tuntiharjoitukset"
+];
+
+async function loadFiles() {
+
+    const url =
+        `https://api.github.com/repos/${OWNER}/${REPO}/git/trees/${BRANCH}?recursive=1`;
+
+    try {
+
+        const response = await fetch(url);
+
+        if (!response.ok) {
+            throw new Error("GitHub API -virhe: " + response.status);
+        }
+
+        const data = await response.json();
+
+        if (data.truncated) {
+            throw new Error("GitHubin tiedostolista on liian suuri.");
+        }
+
+        const root = {};
+
+        // Rakennetaan kansiorakenne
+        data.tree.forEach(item => {
+
+            const parts = item.path.split("/");
+
+            if (!ROOT_FOLDERS.includes(parts[0])) {
+                return;
+            }
+
+            let current = root;
+
+            parts.forEach((part, index) => {
+
+                if (!current[part]) {
+                    current[part] = {
+                        children: {},
+                        isFile: false
+                    };
+                }
+
+                if (index === parts.length - 1 &&
+                    item.type === "blob") {
+                    current[part].isFile = true;
+                }
+
+                current = current[part].children;
+            });
+
+        });
+
+        document.getElementById("status").textContent =
+            "Kansiot ladattu onnistuneesti!";
+
+        const container = document.getElementById("fileTree");
+
+        ROOT_FOLDERS.forEach(folder => {
+
+            if (root[folder]) {
+                container.appendChild(
+                    createFolder(folder, root[folder], "")
+                );
+            }
+
+        });
+
+    } catch (error) {
+
+        document.getElementById("status").textContent =
+            "Virhe: " + error.message;
+
+    }
+}
+
+// Luodaan kansio
+function createFolder(name, node, parentPath) {
+
+    const details = document.createElement("details");
+    details.className = "folder";
+
+    const summary = document.createElement("summary");
+    summary.textContent = "📁 " + name;
+
+    details.appendChild(summary);
+
+    const contents = document.createElement("div");
+    contents.className = "contents";
+
+    const path = parentPath
+        ? parentPath + "/" + name
+        : name;
+
+    // Alikansiot ensin
+    const entries = Object.entries(node.children);
+
+    entries
+        .filter(([key, value]) => !value.isFile)
+        .forEach(([key, value]) => {
+            contents.appendChild(
+                createFolder(key, value, path)
+            );
+        });
+
+    // Tiedostot
+    entries
+        .filter(([key, value]) => value.isFile)
+        .forEach(([key, value]) => {
+
+            const link = document.createElement("a");
+
+            link.className = "file";
+            link.textContent = "📄 " + key;
+
+            link.href = "/" + (path + "/" + key)
+                .split("/")
+                .map(encodeURIComponent)
+                .join("/");
+
+            contents.appendChild(link);
+
+        });
+
+    details.appendChild(contents);
+
+    return details;
+}
+
+loadFiles();
+
+</script>
+
+</body>
+</html>
