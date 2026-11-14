@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Harjoituskoe: JavaScript ja web-kehitys</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="testrunner.js" defer></script>
+    <script src="questions.js" defer></script>
+    <script src="exercises.js" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <h1>Harjoituskoe</h1>
+        <div class="scores" aria-live="polite">
+          <span class="score" id="score-mc">Monivalinta: 0 / 0</span>
+          <span class="score" id="score-code">Koodaus: 0 / 0</span>
+        </div>
+      </div>
+      <nav class="tabs" role="tablist">
+        <button class="tab active" role="tab" data-tab="mc" aria-selected="true">
+          Monivalintakysymykset
+        </button>
+        <button class="tab" role="tab" data-tab="code" aria-selected="false">
+          Koodaustehtävät
+        </button>
+      </nav>
+    </header>
+
+    <main>
+      <!-- ------------------------------------------------ Monivalinta -->
+      <section id="panel-mc" class="panel" role="tabpanel">
+        <p class="lead">
+          Aihealueet: JS 1–5 sekä Python-palvelin (Flask). Valitse aiheet ja
+          kysymysten määrä. Vastauksen jälkeen näet heti oikean vastauksen ja
+          selityksen.
+        </p>
+
+        <div class="card settings">
+          <fieldset>
+            <legend>Aiheet</legend>
+            <div id="topic-list" class="topic-list"></div>
+          </fieldset>
+          <div class="settings-row">
+            <label for="mc-count">Kysymysten määrä</label>
+            <select id="mc-count">
+              <option value="10">10</option>
+              <option value="20" selected>20</option>
+              <option value="40">40</option>
+              <option value="0">Kaikki</option>
+            </select>
+            <button id="mc-start" class="btn primary">Aloita uusi sarja</button>
+          </div>
+        </div>
+
+        <div id="mc-list"></div>
+        <div id="mc-summary" class="card summary" hidden></div>
+      </section>
+
+      <!-- ------------------------------------------------ Koodaus -->
+      <section id="panel-code" class="panel" role="tabpanel" hidden>
+        <p class="lead">
+          Kirjoita funktio tekstikenttään ja paina <strong>Aja testit</strong>.
+          Testifunktio <code>runTests()</code> suorittaa koodisi ja kertoo,
+          menivätkö testit läpi. Koodi tallentuu selaimeen automaattisesti.
+        </p>
+
+        <div class="toolbar">
+          <button id="run-all" class="btn primary">Aja kaikki testit</button>
+          <button id="self-test" class="btn">
+            Itsetesti (mallivastaukset)
+          </button>
+          <button id="reset-all" class="btn danger">Nollaa kaikki</button>
+        </div>
+        <div id="selftest-output" class="card" hidden></div>
+
+        <div id="code-list"></div>
+      </section>
+    </main>
+
+    <footer>
+      Perustuu materiaaliin:
+      <a href="https://metropolia-sw.github.io/webdev/fi/05-js1-vuorovaikutteiset-ohjelmat.html">JS 1</a>,
+      <a href="https://metropolia-sw.github.io/webdev/fi/06-js2-ohjausrakenteet.html">JS 2</a>,
+      <a href="https://metropolia-sw.github.io/webdev/fi/07-js3-taulukot-ja-funktiot.html">JS 3</a>,
+      <a href="https://metropolia-sw.github.io/webdev/fi/08-js4-dom-ja-tapahtumat.html">JS 4</a>,
+      <a href="https://metropolia-sw.github.io/webdev/fi/09-python-palvelin.html">Python-palvelin</a>,
+      <a href="https://metropolia-sw.github.io/webdev/fi/10-js5-ajax-ja-rajapinnat.html">JS 5</a>.
+    </footer>
+  </body>
+</html>
