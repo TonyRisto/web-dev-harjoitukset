@@ -130,7 +130,7 @@ const EXERCISES = [
     fn: "evenNumbers",
     description:
       "Kirjoita funktio evenNumbers(limit), joka palauttaa taulukon, jossa ovat kaikki parilliset kokonaisluvut nollasta lukuun limit asti (limit mukaan lukien, jos se on parillinen).",
-    hint: "for (let i = 0; i <= limit; i += 2) ja results.push(i).",
+    hint: "for (let i = 0; i <= limit; i += 2) ja result.push(i).",
     starter: `function evenNumbers(limit) {
   // kirjoita koodisi tähän
 }

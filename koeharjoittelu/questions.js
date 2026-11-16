@@ -195,7 +195,7 @@ const MC_QUESTIONS = [
   },
   {
     topic: "js2",
-    q: "Mitä luvut seuraava ohjelma tulostaa?",
+    q: "Mitä lukuja seuraava ohjelma tulostaa?",
     code: "for (let i = 0; i <= 6; i += 2) {\n  console.log(i);\n}",
     options: ["0, 2, 4, 6", "0, 2, 4", "2, 4, 6", "1, 3, 5"],
     explain: "i alkaa nollasta, kasvaa kahdella ja toisto jatkuu kun i <= 6.",
@@ -272,7 +272,7 @@ const MC_QUESTIONS = [
   },
   {
     topic: "js3",
-    q: "Mikä on tuloksena?",
+    q: "Mikä on ohjelman tulos?",
     code: "console.log([100, 23, 15].sort());",
     options: [
       "[100, 15, 23]",
@@ -453,7 +453,7 @@ const MC_QUESTIONS = [
   },
   {
     topic: "js4",
-    q: "Mikä tapa liittää tapahtumankäsittelijä on suositeltu nykyaikaisessa web-kehityksessä?",
+    q: "Mitä tapaa tapahtumankäsittelijän liittämiseen suositellaan nykyaikaisessa web-kehityksessä?",
     options: [
       "addEventListener()",
       "HTML:n onclick-attribuutti",

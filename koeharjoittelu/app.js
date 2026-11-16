@@ -29,6 +29,74 @@ function el(tag, props = {}, ...children) {
   return node;
 }
 
+// ------------------------------------------------------------ koodilohkot
+
+const JS_KEYWORDS = new Set([
+  "const", "let", "var", "function", "return", "if", "else", "for", "while",
+  "do", "switch", "case", "default", "break", "continue", "new", "this",
+  "async", "await", "try", "catch", "finally", "throw", "of", "in", "typeof",
+  "delete", "class",
+]);
+const JS_LITERALS = new Set(["true", "false", "null", "undefined"]);
+const JS_BUILTINS = new Set(["console", "document", "window", "Math", "JSON", "Promise", "Array", "Object"]);
+
+// Ryhmät: 1 kommentti, 2 merkkijono, 3 luku, 4 tunniste, 5 operaattori, 6 muu
+const JS_TOKEN =
+  /(\/\/[^\n]*|\/\*[\s\S]*?\*\/)|("(?:\\.|[^"\\\n])*"|'(?:\\.|[^'\\\n])*'|`(?:\\.|[^`\\])*`)|(\b\d+(?:\.\d+)?\b)|([A-Za-z_$][\w$]*)|(=>|===|!==|==|!=|<=|>=|&&|\|\||[+\-*/%=<>!]+)|(\s+|.)/g;
+
+/** Palauttaa koodin syntaksikorostettuna (span-elementit, ei innerHTML:ää). */
+function highlightJs(code) {
+  const fragment = document.createDocumentFragment();
+  const span = (cls, text) => el("span", { class: cls, text });
+
+  for (const match of code.matchAll(JS_TOKEN)) {
+    const [text, comment, string, number, word, operator] = match;
+    if (comment) fragment.append(span("tok-comment", text));
+    else if (string) fragment.append(span("tok-string", text));
+    else if (number) fragment.append(span("tok-number", text));
+    else if (word) {
+      const next = code[match.index + text.length];
+      if (JS_KEYWORDS.has(word)) fragment.append(span("tok-keyword", text));
+      else if (JS_LITERALS.has(word)) fragment.append(span("tok-literal", text));
+      else if (JS_BUILTINS.has(word)) fragment.append(span("tok-builtin", text));
+      else if (next === "(") fragment.append(span("tok-function", text));
+      else fragment.append(text);
+    } else if (operator) fragment.append(span("tok-operator", text));
+    else fragment.append(text);
+  }
+  return fragment;
+}
+
+/** Koodilohko: otsikkorivi (kieli + Kopioi-painike) ja korostettu koodi. */
+function codeBlock(code, label = "JavaScript") {
+  const source = code.replace(/\n$/, "");
+  const copyButton = el("button", {
+    class: "copy-btn",
+    type: "button",
+    text: "Kopioi",
+    "aria-label": "Kopioi koodi leikepöydälle",
+  });
+  copyButton.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(source);
+      copyButton.textContent = "Kopioitu ✓";
+    } catch (error) {
+      copyButton.textContent = "Kopiointi ei onnistunut";
+    }
+    setTimeout(() => (copyButton.textContent = "Kopioi"), 1500);
+  });
+
+  const codeElement = el("code");
+  codeElement.append(highlightJs(source));
+
+  return el(
+    "figure",
+    { class: "codeblock" },
+    el("figcaption", {}, el("span", { class: "lang", text: label }), copyButton),
+    el("pre", { tabindex: "0" }, codeElement),
+  );
+}
+
 function shuffle(array) {
   const copy = [...array];
   for (let i = copy.length - 1; i > 0; i--) {
@@ -186,7 +254,7 @@ function renderQuestion(question, index) {
       el("span", { text: MC_TOPICS[question.topic] }),
     ),
     el("h3", { text: question.q }),
-    question.code ? el("pre", { class: "snippet" }, el("code", { text: question.code })) : null,
+    question.code ? codeBlock(question.code) : null,
     optionsBox,
     feedback,
   );
@@ -238,15 +306,11 @@ function renderExercise(exercise) {
   editor.value = saved ?? exercise.starter;
   editor.rows = Math.max(8, editor.value.split("\n").length + 1);
 
-  editor.addEventListener("input", () => storageSet(`code:${exercise.id}`, editor.value));
-  editor.addEventListener("keydown", (event) => {
-    if (event.key !== "Tab") return;
-    event.preventDefault();
-    const { selectionStart, selectionEnd, value } = editor;
-    editor.value = value.slice(0, selectionStart) + "  " + value.slice(selectionEnd);
-    editor.selectionStart = editor.selectionEnd = selectionStart + 2;
-    editor.dispatchEvent(new Event("input"));
+  editor.addEventListener("input", () => {
+    storageSet(`code:${exercise.id}`, editor.value);
+    editor.rows = Math.max(8, editor.value.split("\n").length + 1);
   });
+  Editor.attach(editor); // IDE-tyyliset sisennykset, sulut ja pikanäppäimet
 
   const badge = el("span", { class: "badge", text: "Ei ajettu" });
   const results = el("div", { class: "results" });
@@ -276,7 +340,7 @@ function renderExercise(exercise) {
   function showReveal(label, text, isCode) {
     reveal.replaceChildren(
       el("strong", { text: label }),
-      isCode ? el("pre", {}, el("code", { text })) : el("div", { text }),
+      isCode ? codeBlock(text) : el("div", { text }),
     );
     reveal.hidden = false;
   }
@@ -326,6 +390,10 @@ function renderExercise(exercise) {
     ),
     el("p", { text: exercise.description }),
     editor,
+    el("p", {
+      class: "editor-hint",
+      text: "Tab / Shift+Tab: sisennys · Ctrl/Cmd+/: kommentoi · Esc ja sen jälkeen Tab: siirry pois kentästä",
+    }),
     actions,
     reveal,
     results,
