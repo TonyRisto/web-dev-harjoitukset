@@ -42,3 +42,10 @@ Tehdyt tehtävät:
 - Tehtävä 6: 1p
 - Tehtävä 7: 2p
 - Tehtävä 8: 4p
+
+### Python & Flask -palvelin
+
+Tehdyt tehtävät:
+
+- Tehtävä 1: 4p
+- Tehtävä 2: 10p
