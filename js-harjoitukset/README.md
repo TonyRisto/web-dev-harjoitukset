@@ -2,7 +2,7 @@
 
 ### JS-moduulit 1 ja 2
 
-[https://users.metropolia.fi/~tonyrist/js-harjoitukset/mod01-02/]
+https://users.metropolia.fi/~tonyrist/js-harjoitukset/mod01-02/
 
 Tehdyt tehtävät:
 
@@ -19,7 +19,7 @@ Tehdyt tehtävät:
 
 ### JS-moduuli 3
 
-[https://users.metropolia.fi/~tonyrist/js-harjoitukset/mod03/]
+https://users.metropolia.fi/~tonyrist/js-harjoitukset/mod03/
 
 Tehdyt tehtävät:
 
@@ -36,7 +36,7 @@ Tehdyt tehtävät:
 
 ### JS-moduuli 4
 
-[https://users.metropolia.fi/~tonyrist/js-harjoitukset/mod04/]
+https://users.metropolia.fi/~tonyrist/js-harjoitukset/mod04/
 
 Tehdyt tehtävät:
 
@@ -51,7 +51,7 @@ Tehdyt tehtävät:
 
 ### Python & Flask -palvelin
 
-[https://users.metropolia.fi/~tonyrist/js-harjoitukset/python_flask/]
+https://users.metropolia.fi/~tonyrist/js-harjoitukset/python_flask/
 
 Tehdyt tehtävät:
 
